@@ -87,16 +87,26 @@ ask_name()
 def sal():
     aa7 = "Enter time"
     print(colored(aa7, random.choice(colors), bacg, atte)) ; speakText(aa7)
-    aa8 = "Hours : "
-    print(colored(aa8, random.choice(colors), bacg, atte)) ; speakText(aa8)
-    hours = alexa()
-    hours = str(hours)
-    aa9 = "Minutes : "
-    print(colored(aa9, random.choice(colors), bacg, atte)) ; speakText(aa9)
-    minutes = alexa() 
-    minutes = str(minutes) ; sleep(0.6)
-    ab1 = "Alarm set on "+hours+":"+minutes
-    print(colored(ab1, random.choice(colors), bacg, atte)) ; speakText(ab1) ; sleep(2)
+    def hour():
+        aa8 = "Hours : "
+        print(colored(aa8, random.choice(colors), bacg, atte)) ; speakText(aa8)
+        hours = alexa()
+        if(hours == None):
+            hour()
+        else:    
+            hours = str(hours)
+            def mint():
+                aa9 = "Minutes : "
+                print(colored(aa9, random.choice(colors), bacg, atte)) ; speakText(aa9)
+                minutes = alexa()
+                if(minutes == None):
+                    mint()
+                else:     
+                    minutes = str(minutes) ; sleep(0.6)
+                    ab1 = "Alarm set on "+hours+":"+minutes
+                    print(colored(ab1, random.choice(colors), bacg, atte)) ; speakText(ab1) ; sleep(2)
+            mint()    
+    hour()
 
 def trch(percent):
     brightness = int(percent)
@@ -123,6 +133,61 @@ def srhg():
         search_string = str(search_string)
         url = "https://www.google.com.tr/search?q={}".format(search_string)
         webbrowser.open_new_tab(url)
+
+def opnste():
+    ad2 = "Select from these"
+    print(colored(ad2, random.choice(colors), bacg, atte)) ; speakText(ad2) ; sleep(0.2)
+    print(colored(" ", random.choice(colors), bacg, atte))
+    ad4 = ">> Wikipedia \n>> Youtube \n>> Facebook \n>> Instagram \n>> Linkedin \n>> Register for vaccine \n>> Aadhar card \n>> Pan card \n>> Passport \n>>Driving licence"
+    print(colored(ad4, random.choice(colors), bacg, atte))
+    print(colored(" ", random.choice(colors), bacg, atte)) ; sleep(0.3)
+    ad3 = "Or say exit to quit"
+    print(colored(ad3, random.choice(colors), bacg, atte)) ; speakText(ad3)
+    slct = alexa() ; sleep(0.4)
+    if(slct == None):
+        opnste()
+    elif(slct == "exit"):
+        print(colored("Quiting...", random.choice(colors), bacg, atte))    
+    elif(slct == "wikipedia"):
+        url = "https://en.wikipedia.org/wiki/Main_Page"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "driving licence"):
+        url = "https://parivahan.gov.in/parivahan/en/content/driving-licence-0"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "youtube"):
+        url = "https://www.youtube.com/"
+        webbrowser.open_new_tab(url)
+        opnste()        
+    elif(slct == "facebook"):
+        url = "https://www.facebook.com/"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "instagram"):
+        url = "https://www.instagram.com/"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "linkedin"):
+        url = "https://in.linkedin.com/"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "register for vaccine"):
+        url = "https://selfregistration.cowin.gov.in/"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "aadhar card"):
+        url = "https://uidai.gov.in/"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "pan card"):
+        url = "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html"
+        webbrowser.open_new_tab(url)
+        opnste()
+    elif(slct == "passport"):
+        url = "https://www.passportindia.gov.in/AppOnlineProject/welcomeLink#"
+        webbrowser.open_new_tab(url)
+        opnste()
 
 def teljok():
     ac4 = (
@@ -167,9 +232,38 @@ def finsh():
     print(colored(ac2, random.choice(colors), bacg, atte)) ; speakText(ac2) ; sleep(2)
     print("---")
 
+rem_que_list = []
+rem_ans_list = []
+
+def rember():
+    ad1 = "Ok tell me what i remberer for you like age, mothers name, meeting time etc"
+    print(colored(ad1, random.choice(colors), bacg, atte)) ; speakText(ad1)
+    def inner():
+        remember_que = alexa() ; sleep(0.6)
+        if(remember_que == None):
+            inner()
+        else:    
+            rem_que_list.append(remember_que)
+            ad2 = "ok what is your "+remember_que+"?"
+            print(colored(ad2, random.choice(colors), bacg, atte)) ; speakText(ad2)
+            def pinner():
+                tex_rememberd = alexa() ; sleep(0.7)
+                if(tex_rememberd == None):
+                    pinner()
+                else:    
+                    rem_ans_list.append(tex_rememberd)
+                    ad3 = "Ok i will remember that for you"
+                    print(colored(ad3, random.choice(colors), bacg, atte)) ; speakText(ad3)
+            pinner()       
+    inner()    
+
+def repl_remb(n):    
+    ad4 = rem_ans_list[int(n)]
+    print(colored(ad4, random.choice(colors), bacg, atte)) ; speakText(str(ad4)) ; sleep(2)
+
 def app():
     print(colored("                               \n                          ", on_color = bacg))
-    ab3 = ">> Set alarm \n>> On the torch \n>> Off the light \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n\nSay 'exit' for close the app" ; sleep(0.2)
+    ab3 = ">> Set alarm \n>> On the torch \n>> Off the light \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n>> Remember \n>> Open site \n\nSay 'exit' for close the app" ; sleep(0.2)
     print(colored(ab3, random.choice(colors), bacg, atte))
     speech = alexa()
     if(speech == "set alarm"):
@@ -190,14 +284,34 @@ def app():
     elif(speech == "order food"):
         ordfod()
         app()
-    elif(speech == "off the light"):
+    elif(speech == "off the torch"):
         trch(0) ; sleep(2)
         app()
     elif(speech == "what is my name"):
         whatname()
-        app()             
+        app()
+    elif(speech == "remember"):
+        rember() ; sleep(2)
+        app()
+    elif(speech == "open site"):
+        opnste()
+        app()    
+    elif(speech == None):
+        app()
     elif(speech == "exit"):
-        finsh()    
+        finsh()        
+    elif(speech == "what is my "+rem_que_list[0]):
+        repl_remb(0) 
+        app()          
+    elif(speech == "what is my "+rem_que_list[1]):
+        repl_remb(1)
+        app()
+    elif(speech == "what is my "+rem_que_list[2]):
+        repl_remb(2)
+        app()
+    elif(speech == "what is my "+rem_que_list[3]):
+        repl_remb(3)
+        app()                    
     else:
         ac9 = "Invalid option"
         print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
