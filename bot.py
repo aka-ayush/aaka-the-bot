@@ -188,6 +188,10 @@ def opnste():
         url = "https://www.passportindia.gov.in/AppOnlineProject/welcomeLink#"
         webbrowser.open_new_tab(url)
         opnste()
+    elif(slct != "passport" or slct != "pan card" or slct != "register for vaccine" or slct != "facebook" or slct != "driving license" or slct != "exit" or slct != "wikipedia" or slct != "linkedin" or slct != "instagram" or slct != "aadhar card" or slct != "youtube"):
+        ad5 = "Invalid option"
+        print(colored(ad5, random.choice(colors), bacg, atte)) ; speakText(ad5) ; sleep(0.5)
+        opnste()    
 
 def teljok():
     ac4 = (
@@ -266,7 +270,9 @@ def app():
     ab3 = ">> Set alarm \n>> On the torch \n>> Off the light \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n>> Remember \n>> Open site \n\nSay 'exit' for close the app" ; sleep(0.2)
     print(colored(ab3, random.choice(colors), bacg, atte))
     speech = alexa()
-    if(speech == "set alarm"):
+    if(speech == None):
+        app()
+    elif(speech == "set alarm"):
         sal()
         app()
     elif(speech == "on the torch"):
@@ -296,25 +302,25 @@ def app():
     elif(speech == "open site"):
         opnste()
         app()    
-    elif(speech == None):
+    try:                
+        if(speech == "what is my "+rem_que_list[0]):
+            repl_remb(0) 
+            app()          
+        elif(speech == "what is my "+rem_que_list[1]):
+            repl_remb(1)
+            app()
+        elif(speech == "what is my "+rem_que_list[2]):
+            repl_remb(2)
+            app()
+        elif(speech == "what is my "+rem_que_list[3]):
+            repl_remb(3)
+            app()                    
+    except IndexError:
         app()
-    elif(speech == "exit"):
-        finsh()        
-    elif(speech == "what is my "+rem_que_list[0]):
-        repl_remb(0) 
-        app()          
-    elif(speech == "what is my "+rem_que_list[1]):
-        repl_remb(1)
-        app()
-    elif(speech == "what is my "+rem_que_list[2]):
-        repl_remb(2)
-        app()
-    elif(speech == "what is my "+rem_que_list[3]):
-        repl_remb(3)
-        app()                    
-    else:
+    if(speech == "exit"):
+        finsh()
+    elif(speech != "exit" or speech != "set alarm" or speech != "tell me a joke" or speech != "search on google" or speech != "on the torch" or speech != "off the torch" or speech != "what is my name" or speech != "book a ride" or speech != "order food" or speech != "remember" or speech != "open site"):
         ac9 = "Invalid option"
         print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
         app()
-
 app()
