@@ -128,11 +128,18 @@ def srhg():
     if(search_string == None):
         srhg()
     elif(search_string == "exit"):
-        print(colored("Quiting...", random.choice(colors), bacg, atte))    
+        ad7 = "Quiting"
+        print(colored(ad7, random.choice(colors), bacg, atte)) ; speakText(ad7)    
     else:    
         search_string = str(search_string)
         url = "https://www.google.com.tr/search?q={}".format(search_string)
         webbrowser.open_new_tab(url)
+
+def url_opner(url):
+    urll = url
+    webbrowser.open_new_tab(urll)
+    ad6 = "Opening..."
+    print(colored(ad6, random.choice(colors), bacg, atte)) ; speakText(ad6) ; sleep(1)
 
 def opnste():
     ad2 = "Select from these"
@@ -147,46 +154,37 @@ def opnste():
     if(slct == None):
         opnste()
     elif(slct == "exit"):
-        print(colored("Quiting...", random.choice(colors), bacg, atte))    
+        ad8 = "Quiting"
+        print(colored(ad8, random.choice(colors), bacg, atte)) ; speakText(ad8) ; sleep(0.6)    
     elif(slct == "wikipedia"):
-        url = "https://en.wikipedia.org/wiki/Main_Page"
-        webbrowser.open_new_tab(url)
+        url_opner("https://en.wikipedia.org/wiki/Main_Page")
         opnste()
     elif(slct == "driving licence"):
-        url = "https://parivahan.gov.in/parivahan/en/content/driving-licence-0"
-        webbrowser.open_new_tab(url)
+        url_opner("https://parivahan.gov.in/parivahan/en/content/driving-licence-0")
         opnste()
     elif(slct == "youtube"):
-        url = "https://www.youtube.com/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://www.youtube.com/")
         opnste()        
     elif(slct == "facebook"):
-        url = "https://www.facebook.com/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://www.facebook.com/")
         opnste()
     elif(slct == "instagram"):
-        url = "https://www.instagram.com/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://www.instagram.com/")
         opnste()
     elif(slct == "linkedin"):
-        url = "https://in.linkedin.com/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://in.linkedin.com/")
         opnste()
     elif(slct == "register for vaccine"):
-        url = "https://selfregistration.cowin.gov.in/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://selfregistration.cowin.gov.in/")
         opnste()
     elif(slct == "aadhar card"):
-        url = "https://uidai.gov.in/"
-        webbrowser.open_new_tab(url)
+        url_opner("https://uidai.gov.in/")
         opnste()
     elif(slct == "pan card"):
-        url = "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html"
-        webbrowser.open_new_tab(url)
+        url_opner("https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html")
         opnste()
     elif(slct == "passport"):
-        url = "https://www.passportindia.gov.in/AppOnlineProject/welcomeLink#"
-        webbrowser.open_new_tab(url)
+        url_opner("https://www.passportindia.gov.in/AppOnlineProject/welcomeLink#")
         opnste()
     else:
         ad5 = "Invalid option"
@@ -324,12 +322,13 @@ def app():
                 app()
             elif(speech == "what is my "+rem_que_list[3]):
                 repl_remb(3)
-                app()                    
+                app()                        
         except IndexError:
             app()
     else:
         ac9 = "Invalid option"
         print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
-        app()
+        app()        
+    
 
 app()
