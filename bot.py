@@ -133,13 +133,13 @@ def srhg():
     else:    
         search_string = str(search_string)
         url = "https://www.google.com.tr/search?q={}".format(search_string)
-        webbrowser.open_new_tab(url)
+        webbrowser.open_new_tab(url) ; sleep(3)
 
 def url_opner(url):
     urll = url
     webbrowser.open_new_tab(urll)
     ad6 = "Opening..."
-    print(colored(ad6, random.choice(colors), bacg, atte)) ; speakText(ad6) ; sleep(1)
+    print(colored(ad6, random.choice(colors), bacg, atte)) ; speakText(ad6) ; sleep(3)
 
 def opnste():
     ad2 = "Select from these"
@@ -154,7 +154,7 @@ def opnste():
     if(slct == None):
         opnste()
     elif(slct == "exit"):
-        ad8 = "Quiting"
+        ad8 = "Closing"
         print(colored(ad8, random.choice(colors), bacg, atte)) ; speakText(ad8) ; sleep(0.6)    
     elif(slct == "wikipedia"):
         url_opner("https://en.wikipedia.org/wiki/Main_Page")
@@ -260,7 +260,7 @@ def rember():
     inner()    
 
 def repl_remb(n):    
-    ad4 = rem_ans_list[int(n)]
+    ad4 = rem_ans_list[n]
     print(colored(ad4, random.choice(colors), bacg, atte)) ; speakText(str(ad4)) ; sleep(2)
 
 def gtu():
@@ -308,10 +308,34 @@ def app():
         app()
     elif(speech == "open site"):
         opnste()
-        app()    
+        app()
     elif(gtu()):
-        try:                
-            if(speech == "what is my "+rem_que_list[0]):
+        try:
+            for el in rem_que_list:
+                idx = rem_que_list.index(el)
+                if(speech == "what is my "+rem_que_list[idx]):
+                    repl_remb(idx)
+                    app()
+            if(speech == "exit"):
+                finsh()    
+            elif(speech != "exit" and speech != "what is my "+rem_que_list[idx]):
+                ad8 = "Invalid option"
+                print(colored(ad8, random.choice(colors), bacg, atte)) ; speakText(ad8)
+                app()    
+        except IndexError:
+            app()    
+    else:
+        ac9 = "Invalid option"
+        print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
+        app()        
+    
+            
+    
+
+app()
+
+
+'''if(speech == "what is my "+rem_que_list[0]):
                 repl_remb(0) 
                 app()          
             elif(speech == "what is my "+rem_que_list[1]):
@@ -322,13 +346,4 @@ def app():
                 app()
             elif(speech == "what is my "+rem_que_list[3]):
                 repl_remb(3)
-                app()                        
-        except IndexError:
-            app()
-    else:
-        ac9 = "Invalid option"
-        print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
-        app()        
-    
-
-app()
+                app()        '''
