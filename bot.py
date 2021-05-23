@@ -138,7 +138,7 @@ def opnste():
     ad2 = "Select from these"
     print(colored(ad2, random.choice(colors), bacg, atte)) ; speakText(ad2) ; sleep(0.2)
     print(colored(" ", random.choice(colors), bacg, atte))
-    ad4 = ">> Wikipedia \n>> Youtube \n>> Facebook \n>> Instagram \n>> Linkedin \n>> Register for vaccine \n>> Aadhar card \n>> Pan card \n>> Passport \n>>Driving licence"
+    ad4 = ">> Wikipedia \n>> Youtube \n>> Facebook \n>> Instagram \n>> Linkedin \n>> Register for vaccine \n>> Aadhar card \n>> Pan card \n>> Passport \n>> Driving licence"
     print(colored(ad4, random.choice(colors), bacg, atte))
     print(colored(" ", random.choice(colors), bacg, atte)) ; sleep(0.3)
     ad3 = "Or say exit to quit"
@@ -188,7 +188,7 @@ def opnste():
         url = "https://www.passportindia.gov.in/AppOnlineProject/welcomeLink#"
         webbrowser.open_new_tab(url)
         opnste()
-    elif(slct != "passport" or slct != "pan card" or slct != "register for vaccine" or slct != "facebook" or slct != "driving license" or slct != "exit" or slct != "wikipedia" or slct != "linkedin" or slct != "instagram" or slct != "aadhar card" or slct != "youtube"):
+    else:
         ad5 = "Invalid option"
         print(colored(ad5, random.choice(colors), bacg, atte)) ; speakText(ad5) ; sleep(0.5)
         opnste()    
@@ -265,13 +265,22 @@ def repl_remb(n):
     ad4 = rem_ans_list[int(n)]
     print(colored(ad4, random.choice(colors), bacg, atte)) ; speakText(str(ad4)) ; sleep(2)
 
+def gtu():
+    try:
+        rem_que_list[0]
+        return True
+    except IndexError:
+        return False    
+
 def app():
     print(colored("                               \n                          ", on_color = bacg))
-    ab3 = ">> Set alarm \n>> On the torch \n>> Off the light \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n>> Remember \n>> Open site \n\nSay 'exit' for close the app" ; sleep(0.2)
+    ab3 = ">> Set alarm \n>> On the torch \n>> Off the torch \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n>> Remember \n>> Open site \n\nSay 'exit' for close the app" ; sleep(0.2)
     print(colored(ab3, random.choice(colors), bacg, atte))
     speech = alexa()
     if(speech == None):
         app()
+    elif(speech == "exit"):
+        finsh()    
     elif(speech == "set alarm"):
         sal()
         app()
@@ -302,25 +311,25 @@ def app():
     elif(speech == "open site"):
         opnste()
         app()    
-    try:                
-        if(speech == "what is my "+rem_que_list[0]):
-            repl_remb(0) 
-            app()          
-        elif(speech == "what is my "+rem_que_list[1]):
-            repl_remb(1)
+    elif(gtu()):
+        try:                
+            if(speech == "what is my "+rem_que_list[0]):
+                repl_remb(0) 
+                app()          
+            elif(speech == "what is my "+rem_que_list[1]):
+                repl_remb(1)
+                app()
+            elif(speech == "what is my "+rem_que_list[2]):
+                repl_remb(2)
+                app()
+            elif(speech == "what is my "+rem_que_list[3]):
+                repl_remb(3)
+                app()                    
+        except IndexError:
             app()
-        elif(speech == "what is my "+rem_que_list[2]):
-            repl_remb(2)
-            app()
-        elif(speech == "what is my "+rem_que_list[3]):
-            repl_remb(3)
-            app()                    
-    except IndexError:
-        app()
-    if(speech == "exit"):
-        finsh()
-    elif(speech != "exit" or speech != "set alarm" or speech != "tell me a joke" or speech != "search on google" or speech != "on the torch" or speech != "off the torch" or speech != "what is my name" or speech != "book a ride" or speech != "order food" or speech != "remember" or speech != "open site"):
+    else:
         ac9 = "Invalid option"
         print(colored(ac9, random.choice(colors), bacg, atte)) ; speakText(ac9)
         app()
+
 app()
