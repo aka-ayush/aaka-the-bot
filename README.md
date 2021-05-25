@@ -9,6 +9,8 @@ This file uses some python modules which may or may not available on your Pc or 
 
 so please install these modules befor running the bot.
 
+If you have any of these modules already installed on your device then dont install it again.
+
 Important : It can not run on any online compiler
 
 >Step 2 - Installing modules
@@ -28,6 +30,8 @@ Open command prompt(CMD) on your system and tipe these commands one by one.
 >pip install webbrowser
 
 >pip install pyttsx3
+
+>pip install time
 
 If some of these commands not work then proceed to step 3 otherwise ingnore it.
 
