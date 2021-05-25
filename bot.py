@@ -72,7 +72,7 @@ def ask_name():
             "hey "+nameList[0]+" i am very exciting to talk to you" ,
             "whats up! "+nameList[0] ,
             nameList[0]+"! "+"i dont hear this name in my whole life" , 
-            "hey "+nameList[0]+" i belive you will like it bro"
+            "hey "+nameList[0]+" i belive you will like it "
         )
         aa4 = random.choice(weicome_string_list)
         print(colored(aa4, random.choice(colors), bacg, atte)) ; speakText(aa4) ; sleep(0.5)
@@ -128,7 +128,7 @@ def srhg():
     if(search_string == None):
         srhg()
     elif(search_string == "exit"):
-        ad7 = "Quiting"
+        ad7 = "Quiting.."
         print(colored(ad7, random.choice(colors), bacg, atte)) ; speakText(ad7)    
     else:    
         search_string = str(search_string)
@@ -154,7 +154,7 @@ def opnste():
     if(slct == None):
         opnste()
     elif(slct == "exit"):
-        ad8 = "Closing"
+        ad8 = "Closing..."
         print(colored(ad8, random.choice(colors), bacg, atte)) ; speakText(ad8) ; sleep(0.6)    
     elif(slct == "wikipedia"):
         url_opner("https://en.wikipedia.org/wiki/Main_Page")
@@ -313,12 +313,12 @@ def app():
         try:
             for el in rem_que_list:
                 idx = rem_que_list.index(el)
-                if(speech == "what is my "+rem_que_list[idx]):
+                if(speech == "what is my "+rem_que_list[idx] or speech == rem_que_list[idx]):
                     repl_remb(idx)
                     app()
             if(speech == "exit"):
                 finsh()    
-            elif(speech != "exit" and speech != "what is my "+rem_que_list[idx]):
+            elif(speech != "exit" and (speech != "what is my "+rem_que_list[idx] and speech != rem_que_list[idx])):
                 ad8 = "Invalid option"
                 print(colored(ad8, random.choice(colors), bacg, atte)) ; speakText(ad8)
                 app()    
