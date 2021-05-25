@@ -9,7 +9,7 @@ This file uses some python modules which may or may not available on your Pc or 
 
 so please install these modules befor running the bot.
 
-If you have any of these modules already installed on your device then dont install it again.
+If you have any of these modules already installed then dont install it again.
 
 Important : It can not run on any online compiler
 
