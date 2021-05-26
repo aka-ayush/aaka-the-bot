@@ -151,7 +151,25 @@ def opnste():
     print(colored(" ", colors, bacg, atte)) ; sleep(0.3)
     ad3 = "\n Or say exit to quit "
     print(colored(ad3, colors, bacg, atte)) ; speakText(ad3)
-    slct = alexa() ; sleep(0.4)
+    utren = alexa() 
+    condn = ["wikipedia", "youtube", "facebook", "instagram", "linkedin", "vaccine", "aadhar", "pan", "passport", "driving", "exit"]
+
+    def findstr():
+        if(utren == None):
+            app()
+        else:
+            try:    
+                for el in condn:
+                    id = utren.find(el)
+                    if(id != -1):
+                        return el
+            except TypeError:
+                ac9 = "\n Invalid option "
+                print(colored(ac9, colors, bacg, atte)) ; speakText(ac9)
+                opnste()
+
+    slct = findstr() ; sleep(0.4)           
+
     if(slct == None):
         opnste()
     elif(slct == "exit"):
@@ -160,7 +178,7 @@ def opnste():
     elif(slct == "wikipedia"):
         url_opner("https://en.wikipedia.org/wiki/Main_Page")
         opnste()
-    elif(slct == "driving licence"):
+    elif(slct == "driving"):
         url_opner("https://parivahan.gov.in/parivahan/en/content/driving-licence-0")
         opnste()
     elif(slct == "youtube"):
@@ -175,13 +193,13 @@ def opnste():
     elif(slct == "linkedin"):
         url_opner("https://in.linkedin.com/")
         opnste()
-    elif(slct == "register for vaccine"):
+    elif(slct == "vaccine"):
         url_opner("https://selfregistration.cowin.gov.in/")
         opnste()
-    elif(slct == "aadhar card"):
+    elif(slct == "aadhar"):
         url_opner("https://uidai.gov.in/")
         opnste()
-    elif(slct == "pan card"):
+    elif(slct == "pan"):
         url_opner("https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html")
         opnste()
     elif(slct == "passport"):
@@ -271,60 +289,93 @@ def gtu():
     except IndexError:
         return False    
 
+
+
 def app():
     print(colored("                               \n                          ", None, "on_cyan"))
     ab3 = "\n>> Set alarm \n>> On the torch \n>> Off the torch \n>> Search on google \n>> Tell me a joke \n>> Order food \n>> Book a ride \n>> What is my name \n>> Remember \n>> Open site \n\n Say 'exit' to close the app " ; sleep(0.2)
     print(colored(ab3, colors, bacg, atte))
-    speech = alexa()
+    talk = alexa()
+
+    def srt():
+        if(talk == None):
+            app()
+        else:
+            try:    
+                for el in rem_que_list:
+                    idt = talk.find(el)
+                    if(idt != -1):
+                        return el
+            except TypeError:
+                ac9 = "\n Invalid option "
+                print(colored(ac9, colors, bacg, atte)) ; speakText(ac9)
+                app()                            
+
+    nlle = srt()
+
+    condn = ["alarm", "on", "off", "google", "joke", "food", "ride", "name", "remember", "site", "exit", nlle]
+
+    def findstr():
+        if(talk == None):
+            app()
+        else:
+            try:    
+                for el in condn:
+                    id = talk.find(el)
+                    if(id != -1):
+                        return el
+            except TypeError:
+                ac9 = "\n Invalid option "
+                print(colored(ac9, colors, bacg, atte)) ; speakText(ac9)
+                app()                                  
+
+    speech = findstr()
+
     if(speech == None):
         app()
     elif(speech == "exit"):
         finsh()    
-    elif(speech == "set alarm"):
+    elif(speech == "alarm"):
         sal()
         app()
-    elif(speech == "on the torch"):
+    elif(speech == "on"):
         trch(100) ; sleep(2)
         app()
-    elif(speech == "search on google"):
+    elif(speech == "google"):
         srhg() ; sleep(2)
         app()  
-    elif(speech == "tell me a joke"):
+    elif(speech == "joke"):
         teljok() ; sleep(2)
         app()    
-    elif(speech == "book a ride"):
+    elif(speech == "ride"):
         boktaxi()
         app()
-    elif(speech == "order food"):
+    elif(speech == "food"):
         ordfod()
         app()
-    elif(speech == "off the torch"):
+    elif(speech == "off"):
         trch(0) ; sleep(2)
         app()
-    elif(speech == "what is my name"):
+    elif(speech == "name"):
         whatname()
         app()
     elif(speech == "remember"):
         rember() ; sleep(2)
         app()
-    elif(speech == "open site"):
+    elif(speech == "site"):
         opnste()
         app()
     elif(gtu()):
         try:
-            for el in rem_que_list:
-                idx = rem_que_list.index(el)
-                if(speech == "what is my "+rem_que_list[idx] or speech == rem_que_list[idx]):
-                    repl_remb(idx)
-                    app()
-            if(speech == "exit"):
+            if(speech == nlle):
+                for i in range(len(rem_que_list)):
+                    if(rem_que_list[i] == nlle):
+                        repl_remb(i)
+                        app()
+            elif(speech == "exit"):
                 finsh()    
-            elif(speech != "exit" and (speech != "what is my "+rem_que_list[idx] and speech != rem_que_list[idx])):
-                ad8 = "\n Invalid option "
-                print(colored(ad8, colors, bacg, atte)) ; speakText(ad8)
-                app()    
         except IndexError:
-            app()    
+            print("close..")    
     else:
         ac9 = "\n Invalid option "
         print(colored(ac9, colors, bacg, atte)) ; speakText(ac9)
